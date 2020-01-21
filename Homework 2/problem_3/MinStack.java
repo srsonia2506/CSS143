@@ -6,6 +6,6 @@ public class MinStack extends ArrayStack {
 
     // add your comments for your design here
     public StackElement getMin() {
-        return super.minElement; 
+        return new StackElement(super.minElement, true); 
     }
 }
