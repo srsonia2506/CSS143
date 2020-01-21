@@ -2,7 +2,7 @@ public class ArrayStack implements Stack {
 
     private int size;
 	private int[] data;
-    int top;  
+    	int top;  
 
     private ArrayStack(){
 		this(Integer.MAX_VALUE - 8);
