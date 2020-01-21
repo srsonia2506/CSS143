@@ -1,31 +1,47 @@
 public class ArrayStack implements Stack {
 
-    private int data[];
     private int size;
+	private int[] data;
+    int top;  
 
-
-    private ArrayStack() {}
+    private ArrayStack(){
+		this(Integer.MAX_VALUE - 8);
+		this.top = -1; 
+	}
 
     public ArrayStack(int size) {
-        // homework
+       this.size=size;
+	   data= new int[size];
     }
 
     @Override
     public boolean pop() {
-        // homework
-        return false;   // placeholder
+        if (top < 0) { 
+            System.out.println("Stack Underflow"); 
+            return 0; 
+        } else { 
+            int x = a[top--]; 
+            return x; 
+        } 
     }
 
     @Override
     public boolean push(int val) {
-        // homework
-        return false;   // placeholder
+        if (top >= (MAX - 1)){ 
+            return false; 
+        }else{ 
+            a[++top] = val; 
+            return true; 
+        } 
     }
 
     @Override
     public StackElement peek() {
-        // homework
-        return null;   // placeholder
+        if (top < 0) { 
+            return new StackElement(0, false); ; 
+        } else { 
+            return new StackElement(a[top], true); 
+        } 
     }
 
     @Override
