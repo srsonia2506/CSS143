@@ -37,7 +37,8 @@ public class ArrayStack implements Stack {
         if (data.isFull()){ 
             return false; 
         }else{ 
-            a[++numElements] = val; 
+            data[numElements] = val; 
+	    numElements++;	
             return true; 
         } 
     }
@@ -47,7 +48,7 @@ public class ArrayStack implements Stack {
         if (data.isEmpty() < 0) { 
             return new StackElement(0, false); ; 
         } else { 
-            return new StackElement(a[top], true); 
+            return new StackElement(data[numElements-1], true); 
         } 
     }
 
