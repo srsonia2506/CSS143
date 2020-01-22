@@ -21,7 +21,7 @@ public class ArrayStack implements Stack {
 
     @Override
     public boolean pop() {
-	if (data.isEmpty()||data.isFull()){
+	if (data.isEmpty()){
 	    return false;
     } else { 
 	    //int val=data[size--];
