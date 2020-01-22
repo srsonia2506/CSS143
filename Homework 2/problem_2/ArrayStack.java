@@ -1,32 +1,31 @@
 public class ArrayStack implements Stack {
 
-	private int numElements;
+    private int numElements;
     private int size;
-	private int[] data;
+    private int[] data;
 
-    private ArrayStack(){ 
-	}
+    private ArrayStack(){}
 
     public ArrayStack(int size) {
        this.size=size;
-	   data= new int[size];
+       data= new int[size];
     }
 	
-	public boolean isEmpty() {
-		return (numElements <= 0);
+    public boolean isEmpty() {
+	return (numElements <= 0);
     }
 	
-	public boolean isFull() {
-		return (numElements >= size-1);
+    public boolean isFull() {
+	return (numElements >= size-1);
     }
 
     @Override
     public boolean pop() {
-		if (data.isEmpty()||data.isFull()){
-			return false;
-        } else { 
-			//int val=data[size--];
-			numElements--;
+	if (data.isEmpty()||data.isFull()){
+	    return false;
+    } else { 
+	    //int val=data[size--];
+	    numElements--;
             return true; 
         } 
     }
