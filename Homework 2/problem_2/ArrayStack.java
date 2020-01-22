@@ -1,6 +1,8 @@
+import java.lang.*;
+
 public class ArrayStack implements Stack {
 
-    private int numElements;
+    private int numElements=0;
     private int size;
     private int[] data;
 
@@ -24,7 +26,7 @@ public class ArrayStack implements Stack {
 	if (data.isEmpty()){
 	    return false;
     } else { 
-	    //int val=data[size--];
+	    System.arraycopy(data, 0, data, 0, numElements-1);
 	    numElements--;
             return true; 
         } 
