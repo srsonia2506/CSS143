@@ -1,10 +1,15 @@
 import java.util.Arrays;
 
 public class Tests {
-    public static boolean testColorSort() {
+
+  public static boolean testColorSort() {
         int inputs[][] = {
+                {},
                 {1,2,0},
                 {2,1,2,0},
+                {2,2,0,0,1,1},
+                {0,0,2,2,2},
+                {2,1,0}
         };
         int expects[][] = new int[inputs.length][];
         getCorrectAnswers(inputs, expects);
@@ -27,7 +32,7 @@ public class Tests {
         return !anyFailed;
     }
 
-    private static void getCorrectAnswers(int[][] inputs, int[][]expects) {
+  private static void getCorrectAnswers(int[][] inputs, int[][]expects) {
         for (int i=0; i<inputs.length; i++) {
             expects[i] = inputs[i].clone();
             Arrays.sort(expects[i]);
