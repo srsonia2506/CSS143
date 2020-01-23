@@ -98,7 +98,7 @@ public class ArrayStackTests {
         }              
 
         data = stack.peek();
-        if(data.isValid()|| data.getData()==99){
+        if(!data.isValid()|| data.getData()!=99){
            printFailMessage(testName, "peek wrong", String.valueOf(99), String.valueOf(data.getData()));
            return false;
         }
@@ -148,7 +148,7 @@ public class ArrayStackTests {
         }              
 
         data = stack.peek();
-        if(data.isValid()||data.getData()==100){
+        if(!data.isValid()||data.getData()!=100){
            printFailMessage(testName, "peek wrong", String.valueOf(100), String.valueOf(data.getData()));
            return false;
         }
