@@ -17,23 +17,7 @@ public class MinStackTest {
     }
 
     @Test
-    public void minReturnsSmallestValueWhenMultipleOccurrencesExistInTheStackAfterTheMostRecentOneIsPopped() {
-        stack.push(7);
-        stack.push(1);
-        stack.push(7);
-        stack.push(1);
-        stack.pop();
-        assertEquals(1, stack.getMin());
-    }
-
-    @Test
-    public void minReturnsASmallerValueFromDeeperInTheStack() {
-        stack.push(7);
-        stack.push(1);
-        stack.push(3);
-        stack.push(0);
-        stack.pop();
-        assertEquals(1, stack.getMin());
+    assertEquals versus assertSame
     }
     */
     
