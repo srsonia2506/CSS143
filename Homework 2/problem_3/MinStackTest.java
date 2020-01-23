@@ -3,11 +3,30 @@
 
 public class MinStackTest {
     
-    MinStack stack;
-    
     public static boolean testMinStack() {
-        // homework
-        return false; // placeholder
+        if(!RepeatedOccurrenceMinPopped()){
+            return false;
+        }
+        if(!minInMiddleOfTheStack()){
+            return false;
+        }
+        if(!minPopped()){
+            return false;
+        }
+        if(!minInStackNotPopped()){
+            return false;
+        }
+        if(!minLastElementNoPopping()){
+            return false;
+        }
+        if(!testPush()){
+            return false;
+        }
+        if(!multipleValuesPushed()){
+            return false;
+        }
+        
+        return true; 
     }
     
     /*
@@ -22,6 +41,7 @@ public class MinStackTest {
     */
     
     public void RepeatedOccurrenceMinPopped() {
+        MinStack stack= new MinStack();
         String testName = "RepeatedOccurrenceMinPopped";
         
         stack.push(7);
@@ -39,6 +59,7 @@ public class MinStackTest {
     }
 
     public void minInMiddleOfTheStack() {
+        MinStack stack= new MinStack();
         String testName = "minInMiddleOfTheStack";
         
         stack.push(7);
@@ -56,6 +77,7 @@ public class MinStackTest {
     }
     
     public boolean minPopped() {
+        MinStack stack= new MinStack();
         String testName = "minPopped";
         
         stack.push(5);
@@ -72,6 +94,7 @@ public class MinStackTest {
     }
 
     public boolean minInStackNotPopped() {
+        MinStack stack= new MinStack();
         String testName = "minInStackNotPopped";
         
         stack.push(3);
@@ -87,6 +110,7 @@ public class MinStackTest {
     }
 
     public boolean minLastElementNoPopping() {
+        MinStack stack= new MinStack();
         String testName = "minLastElementNoPopping";
         
         stack.push(9);
@@ -101,6 +125,7 @@ public class MinStackTest {
     }
 
     public boolean testPush() {
+        MinStack stack= new MinStack();
         String testName = "testPush";
         
         stack.push(88);
@@ -114,6 +139,7 @@ public class MinStackTest {
     }
 
     public boolean multipleValuesPushed() {
+        MinStack stack= new MinStack();
         String testName = "multipleValuesPushed";
         
         stack.push(77);
