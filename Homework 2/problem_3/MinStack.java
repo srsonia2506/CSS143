@@ -9,9 +9,9 @@ public class MinStack extends ArrayStack{
         super(size);
     }
     
-    @override
+    @Override
     public boolean push(int x) {
-        if (size==data.length){ 
+        if (stack.size==super.data.length){ 
             return false; 
         } else if (x <= getMin()||stack.size==0) {
             minimums.push(x);
@@ -20,9 +20,9 @@ public class MinStack extends ArrayStack{
 		return true;
     }
 	
-	@override
+	@Override
     public boolean pop() {
-	if (size == 0){
+	if (stack.size()==0){
 		return false;
 	} 
         int removed = stack.peek();
@@ -36,7 +36,7 @@ public class MinStack extends ArrayStack{
 
     // Having a second stack and adds minimums to it. That way, even if minimum removed, the next top element in stack is the min
     public StackElement getMin() {
-        if (s.isEmpty()) return new StackElement(0, false);
+        if (stack.size()==0) return new StackElement(0, false);
         else return new StackElement(minimums.peek(), true);
     }
 }
