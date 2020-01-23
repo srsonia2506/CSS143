@@ -2,53 +2,55 @@ import java.lang.*;
 
 public class ArrayStack implements Stack {
 
-    private int numElements=0;
+    //private int numElements=0;
     private int size;
     private int[] data;
 
     private ArrayStack(){}
 
     public ArrayStack(int size) {
-       this.size=size;
+       this.size=0;
        data= new int[size];
     }
 	
+  /*
     public boolean isEmpty() {
-	return (numElements <= 0);
+	return (size <= 0);
     }
 	
     public boolean isFull() {
-	return (numElements >= size-1);
+	return (size >= data.length-1);
     }
+  */
 
     @Override
     public boolean pop() {
-	if (data.isEmpty()){
+	if (size <= 0){
 	    return false;
     } else { 
-	    System.arraycopy(data, 0, data, 0, numElements-1);
-	    numElements--;
+	    System.arraycopy(data, 0, data, 0, size-1);
+	    size--;
             return true; 
         } 
     }
 
     @Override
     public boolean push(int val) {
-        if (data.isFull()){ 
+        if (size==data.length){ 
             return false; 
         }else{ 
-            data[numElements] = val; 
-	    numElements++;	
+            data[size] = val; 
+	          size++;	
             return true; 
         } 
     }
 
     @Override
     public StackElement peek() {
-        if (data.isEmpty() < 0) { 
-            return new StackElement(0, false); ; 
+        if (size <= 0) { 
+            return new StackElement(0, false);
         } else { 
-            return new StackElement(data[numElements-1], true); 
+            return new StackElement(data[size-1], true); 
         } 
     }
 
