@@ -1,4 +1,4 @@
-import java.lang.*;
+//import java.lang.*;
 
 public class ArrayStack implements Stack {
 
@@ -25,10 +25,10 @@ public class ArrayStack implements Stack {
 
     @Override
     public boolean pop() {
-	if (size <= 0){
+	if (size == 0){
 	    return false;
     } else { 
-	    System.arraycopy(data, 0, data, 0, size-1);
+	    data[size -1]=0;
 	    size--;
             return true; 
         } 
