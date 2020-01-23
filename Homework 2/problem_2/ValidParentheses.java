@@ -5,11 +5,11 @@ public class ValidParentheses {
         parenthesesMapping.put('{', '}');
         parenthesesMapping.put('[', ']');
 
-        Stack<Character> parentheses = new Stack<>();
+        Stack parentheses = new Stack();
         for(int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
             if(parenthesesMapping.containsKey(c)) {
-                parentheses.push(c);    
+                parentheses.push((int)c);    
             } else {
                 if(parentheses.isEmpty()) {
                     return false;
