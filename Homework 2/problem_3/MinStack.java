@@ -6,7 +6,7 @@ public class MinStack extends ArrayStack {
     
     @Override
     public boolean pop() {
-	if (data.isEmpty()){
+	if (size<=0){
 	    return false;
     } else { 
 	    System.arraycopy(data, 0, data, 0, numElements-1);
@@ -17,14 +17,14 @@ public class MinStack extends ArrayStack {
 
     @Override
     public boolean push(int val) {
-        if (data.isFull()){ 
-            return false; 
-        }else{ 
-            data[numElements] = val; 
-	    numElements++;	
-            return true; 
-        } 
+        if (s.isEmpty()||val < minElement){ 
+            minElement = val; 
+        }
+		
+	s.push(val); 
+	return true;
     }
+
 
     // add your comments for your design here
     public StackElement getMin() {
