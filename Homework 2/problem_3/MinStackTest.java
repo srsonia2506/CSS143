@@ -40,8 +40,8 @@ public class MinStackTest {
     }
     */
     
-    public void RepeatedOccurrenceMinPopped() {
-        MinStack stack= new MinStack();
+    public static boolean RepeatedOccurrenceMinPopped() {
+        MinStack stack= new MinStack(10);
         String testName = "RepeatedOccurrenceMinPopped";
         
         stack.push(7);
@@ -51,15 +51,15 @@ public class MinStackTest {
         stack.pop();
         
         int expected=1;
-        boolean isWorking = (expected==stack.getMin());
-        if(!ifWorking){
+        boolean isWorking = (expected==stack.getMin().getData());
+        if(!isWorking){
             printFailMessage(testName,expected,stack.getMin());
         }
-        return isWorking();
+        return isWorking;
     }
 
-    public void minInMiddleOfTheStack() {
-        MinStack stack= new MinStack();
+    public static boolean minInMiddleOfTheStack() {
+        MinStack stack= new MinStack(10);
         String testName = "minInMiddleOfTheStack";
         
         stack.push(7);
@@ -69,15 +69,15 @@ public class MinStackTest {
         stack.pop();
         
         int expected=1;
-        boolean isWorking = (expected==stack.getMin());
-        if(!ifWorking){
+        boolean isWorking = (expected==stack.getMin().getData());
+        if(!isWorking){
             printFailMessage(testName,expected,stack.getMin());
         }
-        return isWorking();
+        return isWorking;
     }
     
-    public boolean minPopped() {
-        MinStack stack= new MinStack();
+    public static boolean minPopped() {
+        MinStack stack= new MinStack(10);
         String testName = "minPopped";
         
         stack.push(5);
@@ -86,15 +86,15 @@ public class MinStackTest {
         stack.pop();
         
         int expected=4;
-        boolean isWorking = (expected==stack.getMin());
-        if(!ifWorking){
+        boolean isWorking = (expected==stack.getMin().getData());
+        if(!isWorking){
             printFailMessage(testName,expected,stack.getMin());
         }
-        return isWorking();
+        return isWorking;
     }
 
-    public boolean minInStackNotPopped() {
-        MinStack stack= new MinStack();
+    public static boolean minInStackNotPopped() {
+        MinStack stack= new MinStack(10);
         String testName = "minInStackNotPopped";
         
         stack.push(3);
@@ -102,59 +102,59 @@ public class MinStackTest {
         stack.push(5);
         
         int expected=3;
-        boolean isWorking = (expected==stack.getMin());
-        if(!ifWorking){
+        boolean isWorking = (expected==stack.getMin().getData());
+        if(!isWorking){
             printFailMessage(testName,expected,stack.getMin());
         }
-        return isWorking();
+        return isWorking;
     }
 
-    public boolean minLastElementNoPopping() {
-        MinStack stack= new MinStack();
+    public static boolean minLastElementNoPopping() {
+        MinStack stack= new MinStack(10);
         String testName = "minLastElementNoPopping";
         
         stack.push(9);
         stack.push(8);
         
         int expected=8;
-        boolean isWorking = (expected==stack.getMin());
-        if(!ifWorking){
+        boolean isWorking = (expected==stack.getMin().getData());
+        if(!isWorking){
             printFailMessage(testName,expected,stack.getMin());
         }
-        return isWorking();
+        return isWorking;
     }
 
-    public boolean testPush() {
-        MinStack stack= new MinStack();
+    public static boolean testPush() {
+        MinStack stack= new MinStack(10);
         String testName = "testPush";
         
         stack.push(88);
         
         int expected=88;
-        boolean isWorking = (expected==stack.peek());
-        if(!ifWorking){
+        boolean isWorking = (expected==stack.peek().getData());
+        if(!isWorking){
             printFailMessage(testName,expected,stack.peek());
         }
-        return isWorking();
+        return isWorking;
     }
 
-    public boolean multipleValuesPushed() {
-        MinStack stack= new MinStack();
+    public static boolean multipleValuesPushed() {
+        MinStack stack= new MinStack(10);
         String testName = "multipleValuesPushed";
         
         stack.push(77);
         stack.push(99);
         
         int expected = 99;
-        boolean isWorking = (expected==stack.peek());
-        if(!ifWorking){
+        boolean isWorking = (expected==stack.peek().getData());
+        if(!isWorking){
             printFailMessage(testName,expected,stack.peek());
         }
-        return isWorking();
+        return isWorking;
     }
     
-    private static void printFailMessage(String testName, String expected, String actual) {
-        System.out.println(testName + " : " + ", expected: " + expected + ", actual: " + actual);
+    private static void printFailMessage(String testName, int expected, StackElement actual) {
+        System.out.println(testName + " : " + ", expected: " + expected + ", actual: " + actual.getData());
     }
 
 }
