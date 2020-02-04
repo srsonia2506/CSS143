@@ -2,41 +2,48 @@ import java.util.*;
 
 public class MinStack extends ArrayStack{
 
-    private Deque<Integer> stack = new LinkedList<Integer>();
-    private Deque<Integer> minimums = new LinkedList<Integer>();
+    private ArrayStack minimums;
 
     public MinStack(int size) {
         super(size);
+        minimums = new ArrayStack(size);
     }
     
     @Override
     public boolean push(int x) {
-        if (stack.size==super.data.length){ 
-            return false; 
-        } else if (x <= getMin()||stack.size==0) {
-            minimums.push(x);
-        }
-        stack.push(x);
-		return true;
+      StackElement minValue = minimums.peek();
+      if (!minValue.isValid() || x <= minValue.getData()) {
+        minimums.push(x);
+      }
+      return super.push(x);
     }
 	
-	@Override
+    @Override
     public boolean pop() {
-	if (stack.size()==0){
-		return false;
-	} 
-        int removed = stack.peek();
-		stack.pop();
-        if (removed == getMin()) {
-            minimums.pop();
-        }
-		return true;
+      /*
+      if (super.size()==0){
+        return false;
+      } 
+      int removed = super.peek().getData();
+      super.pop();
+      if (removed == getMin().getData()) {
+        minimums.pop();
+      }
+      return true;
+      */
+      
+      StackElement minValue = minimums.peek();
+      StackElement item = super.peek();
+
+      if (item.isValid() && item.equals(minValue)) {
+        minimums.pop();
+      }
+      return super.pop();        
     }
 
 
-    // Having a second stack and adds minimums to it. That way, even if minimum removed, the next top element in stack is the min
+    // Having a second stack and add minimums to it. That way, when minimum removed, the next top element in min stack is the new min
     public StackElement getMin() {
-        if (stack.size()==0) return new StackElement(0, false);
-        else return new StackElement(minimums.peek(), true);
+      return minimums.peek();
     }
 }

@@ -154,7 +154,7 @@ public class MinStackTest {
     }
     
     private static void printFailMessage(String testName, int expected, StackElement actual) {
-        System.out.println(testName + " : " + ", expected: " + expected + ", actual: " + actual.getData());
+        System.out.println(testName + " : " + " expected: " + expected + ", actual: " + actual.getData());
     }
 
 }

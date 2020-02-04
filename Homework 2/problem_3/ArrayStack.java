@@ -25,13 +25,13 @@ public class ArrayStack implements Stack {
 
     @Override
     public boolean pop() {
-	if (size <= 0){
-	    return false;
-    } else { 
-	    System.arraycopy(data, 0, data, 0, size-1);
-	    size--;
-            return true; 
-        } 
+      if (size <= 0){
+        return false;
+      } else { 
+        System.arraycopy(data, 0, data, 0, size-1);
+        size--;
+        return true; 
+      } 
     }
 
     @Override
