@@ -19,23 +19,11 @@ public class MinStack extends ArrayStack{
     }
 	
     @Override
-    public boolean pop() {
-      /*
-      if (super.size()==0){
-        return false;
-      } 
-      int removed = super.peek().getData();
-      super.pop();
-      if (removed == getMin().getData()) {
-        minimums.pop();
-      }
-      return true;
-      */
-      
+    public boolean pop() {      
       StackElement minValue = minimums.peek();
-      StackElement item = super.peek();
+      StackElement topValue = super.peek();
 
-      if (item.isValid() && item.equals(minValue)) {
+      if (topValue.isValid() && topValue.equals(minValue)) {
         minimums.pop();
       }
       return super.pop();        
