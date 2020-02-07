@@ -1,0 +1,3 @@
+- agile manager is a viable career option
+- you need to be funny to be able to give an almost 50min talk
+- software dev has many aspects that we are not taught in class like technical debt, Cyclomatic complexity, need to not have version controls dating to 30 years ago
