@@ -1,0 +1,1 @@
+Removal from arraylist takes approximately O(n) while that in linkedlist takes constant time. While there are minor outliers, the best fit line follows the above mentioned trend and the discreptancies are hardly noticeable, given the large difference between runtime of arraylist vs that of linkedlist.
