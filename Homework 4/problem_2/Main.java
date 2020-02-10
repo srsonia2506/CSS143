@@ -32,14 +32,14 @@ public class Main {
     }
 
     private static void quickSort(int[] data, int low, int high) {
-        int index = partition(data, start, end);
+        int index = partition(data, low, high);
 
-        if (start < index - 1) {
-            quickSort(data, start, index - 1);
+        if (low < index - 1) {
+            quickSort(data, low, index - 1);
         }
 
-        if (end > index) {
-            quickSort(data, index, end);
+        if (high > index) {
+            quickSort(data, index, high);
         }
     }
 
@@ -52,20 +52,45 @@ public class Main {
             data[j] = data[j+1];
             data[j+1] = temp;
           }
-	}
-      }
+			  }
+		  }
     }
 
     public static void quickSort(int data[]) {
         quickSort(data, 0, data.length - 1);
     }
 
+    public static int[] newArray() {
+      int arrLength=getRandomNumberInRange(0, 100);
+      int[] arr = new int[arrLength];
+      for(int i=0;i<arrLength;i++){
+        arr[i]=getRandomNumberInRange(Integer. MIN_VALUE, Integer. MAX_VALUE);
+      }
+      return arr;
+    }
+
     public static void testSort() {
-        // homework
+      int inputs[][] = new int[5][];
+      for (int i=0;i<5;i++){
+        inputs[i]=newArray();
+      }
+      
+      for (int i=0; i<inputs.length; i++) {
+			  if (!Arrays.equals(bubbleSort(inputs[i]),quickSort(inputs[i]))) {
+          System.out.println("testSort FAILED"); 
+          System.out.printf("Case %d: Array: ", i);
+				  System.out.println(Arrays.toString(inputs[i]));
+          System.out.print(", BubbleSort Output: ");
+				  System.out.print(Arrays.toString(bubbleSort(inputs[i])));
+				  System.out.print(", QuickSort Output: ");
+				  System.out.println(Arrays.toString(quickSort(inputs[i])));
+          return;
+        }
+      }
         // compare both
         // 1. bubble sort and quick sort result match
         // 2. both result match the result of Arrays.sort()
-        System.out.println("testSort FAILED"); // placeholder
+      // placeholder
     }
 
     //https://mkyong.com/java/java-generate-random-integers-in-a-range/
