@@ -7,17 +7,53 @@ public class Main {
     }
 
     private static int partition(int arr[], int low, int high) {
-        // homework
-        return -1; // place holder
+        int pivot = arr[low]; // taking first element as pivot
+
+        while (low <= high) {
+            while (arr[low] < pivot) {
+                low++;
+            }
+            
+            while (arr[high] > pivot) {
+                high--;
+            }
+
+            if (low <= high) {
+                int temp = arr[low];
+                arr[low] = arr[high];
+                arr[high] = temp;
+
+                //increment left index and decrement right index
+                low++;
+                high--;
+            }
+        }
+        return low;
     }
 
-    private static void quickSort(int data[], int low, int high) {
-        // homework
-        // this should call the above partition(...)
+    private static void quickSort(int[] data, int low, int high) {
+        int index = partition(data, start, end);
+
+        if (start < index - 1) {
+            quickSort(data, start, index - 1);
+        }
+
+        if (end > index) {
+            quickSort(data, index, end);
+        }
     }
 
     public static void bubbleSort(int data[]) {
-        // use code from homework 1
+      int n = data.length;
+        for (int i = 0; i < n-1; i++){
+            for (int j = 0; j < n-i-1; j++){
+                if (data[j] > data[j+1]){
+                  int temp = data[j];
+                  data[j] = data[j+1];
+                  data[j+1] = temp;
+                }
+			      }
+		    }
     }
 
     public static void quickSort(int data[]) {
