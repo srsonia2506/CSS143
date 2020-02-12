@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.lang.*;
 
 public class Main {
 
@@ -71,26 +72,50 @@ public class Main {
 
     public static void testSort() {
       int inputs[][] = new int[5][];
+      int arraySort[][]= new int[5][];
+      int bubblesort[][] = new int[5][];
+      int quicksort[][] = new int[5][];
+
       for (int i=0;i<5;i++){
-        inputs[i]=newArray();
+        int[] arr = newArray();
+        inputs[i]= arr;
+        bubblesort[i]= arr;
+        quicksort[i]= arr;
+        arraySort[i]= arr;
+      }
+
+      for (int i=0; i<inputs.length; i++) {
+        Arrays.sort(inputs[i]); 
+	bubbleSort(bubblesort[i]);
+        quickSort(quicksort[i]);
       }
       
-      for (int i=0; i<inputs.length; i++) {
-			  if (!Arrays.equals(bubbleSort(inputs[i]),quickSort(inputs[i]))) {
+      for (int i=0; i<bubblesort.length; i++) {
+	if (!Arrays.equals(bubblesort[i],quicksort[i])) {
           System.out.println("testSort FAILED"); 
           System.out.printf("Case %d: Array: ", i);
-				  System.out.println(Arrays.toString(inputs[i]));
+	  System.out.println(Arrays.toString(inputs[i]));
           System.out.print(", BubbleSort Output: ");
-				  System.out.print(Arrays.toString(bubbleSort(inputs[i])));
-				  System.out.print(", QuickSort Output: ");
-				  System.out.println(Arrays.toString(quickSort(inputs[i])));
+	  System.out.print(Arrays.toString(bubblesort[i]));
+	  System.out.print(", QuickSort Output: ");
+	  System.out.println(Arrays.toString(quicksort[i]));
           return;
         }
       }
-        // compare both
-        // 1. bubble sort and quick sort result match
-        // 2. both result match the result of Arrays.sort()
-      // placeholder
+
+      for (int i=0; i<inputs.length; i++) {
+	if (!Arrays.equals(bubblesort[i],inputs[i])) {
+          System.out.println("testSort FAILED"); 
+          System.out.printf("Case %d: Array: ", i);
+	  System.out.println(Arrays.toString(inputs[i]));
+          System.out.print(", BubbleSort Output: ");
+	  System.out.print(Arrays.toString(bubblesort[i]));
+	  System.out.print(", QuickSort Output: ");
+	  System.out.println(Arrays.toString(quicksort[i]));
+          return;
+        }
+      }
+      System.out.println("testSort PASSED"); 
     }
 
     //https://mkyong.com/java/java-generate-random-integers-in-a-range/
