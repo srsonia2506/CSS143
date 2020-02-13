@@ -53,8 +53,8 @@ public class Main {
             data[j] = data[j+1];
             data[j+1] = temp;
           }
-			  }
-		  }
+	}
+      }
     }
 
     public static void quickSort(int data[]) {
@@ -110,14 +110,13 @@ public class Main {
 	  System.out.println(Arrays.toString(inputs[i]));
           System.out.print(", BubbleSort Output: ");
 	  System.out.print(Arrays.toString(bubblesort[i]));
-	  System.out.print(", QuickSort Output: ");
-	  System.out.println(Arrays.toString(quicksort[i]));
+	  System.out.print(", Array Sort Output: ");
+	  System.out.println(Arrays.toString(arraySort[i]));
           return;
         }
       }
       System.out.println("testSort PASSED"); 
     }
-
     //https://mkyong.com/java/java-generate-random-integers-in-a-range/
     // generate a random number between min and max
     private static int getRandomNumberInRange(int min, int max) {
