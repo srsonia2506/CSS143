@@ -1,12 +1,10 @@
+import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class BinaryTreeTests {
     @Test
@@ -33,24 +31,88 @@ public class BinaryTreeTests {
 
     @Test
     public void LCA() {
-        // homework
-        // get test cases from getRegularTreeTestCases()
-        assertTrue(false); // place holder
+        List<BinaryTree> trees = getRegularTreeTestCases();
+        int[][] inputs = {
+                {5, 4},
+                {1, 1},
+                {1, 2},
+                {4, 5},
+                {3, 1},
+                {3, 1},
+                {8, 9}
+        };
+        int[] expected = {0, 1, 1, 2, 1, 1, 2};
+
+        // Skip the first test because it is empty
+        for (int i = 1; i < expected.length; i++) {
+            int actual = trees.get(i).LCA(inputs[i][0], inputs[i][1]);
+            assertEquals(expected[i], actual);
+        }
     }
 
     @Test
     public void levelOrderTraversal() {
-        // homework
-        // get test cases from getRegularTreeTestCases()
-        assertTrue(false); // place holder
+        List<BinaryTree> trees = getRegularTreeTestCases();
+        int[][][] expected = {
+                                {},
+                                {       {1}
+                                },
+                                {
+                                        {1},
+                                        {2},
+                                },
+                                {
+                                        {1},
+                                        {2, 3},
+                                        {4, 5, 6}
+                                },
+                                {
+                                        {1},
+                                        {2},
+                                        {3},
+                                },
+                                {
+                                        {1},
+                                        {2},
+                                        {3},
+                                },
+                                {
+                                        {1},
+                                        {2, 3},
+                                        {4, 5, 6},
+                                        {7, 8},
+                                        {9},
+                                }
+                        };
+
+        for (int i = 0; i < trees.size(); i++) {
+            int[][] expectedAnswer = expected[i];
+            List<List<Integer>> actual = trees.get(i).levelOrderTraversal();
+            for (int j = 0; j < expectedAnswer.length; j++) {
+                int[] expectedList = expectedAnswer[j];
+                List<Integer> actualList = actual.get(j);
+                assertEquals(expectedList.length, actualList.size());
+                for (int k = 0; k < expectedList.length; k++) {
+                    int expectedInt = expectedList[k];
+                    int actualInt = actualList.get(k);
+                    assertEquals(expectedInt, actualInt);
+                }
+            }
+        }
+
     }
 
     @Test
     public void nthSmallestInBST() {
-        // homework
-        // extra credit
-        // get test cases from getBSTTestCases()
-        assertTrue(false); // place holder
+        List<BinaryTree> trees = getBSTTestCases();
+        int[] inputs    = {420, 1, 2, 6, 1, 3, 9};
+        int[] expected  = {420, 1, 2, 9, 1, 3, 12};
+
+        // Skip the first test because it is empty
+        for (int i = 1; i < trees.size(); i++) {
+            int actual = trees.get(i).nthSmallestInBST(inputs[i]);
+            assertEquals(expected[i], actual);
+        }
     }
 
     @Test
@@ -241,9 +303,9 @@ public class BinaryTreeTests {
         //        2
         //       /
         //      1
-        root = new TreeNode(1);
+        root = new TreeNode(3);
         root.left = new TreeNode(2);
-        root.left.left = new TreeNode(3);
+        root.left.left = new TreeNode(1);
         trees.add(new BinaryTree(root));
 
         //          1

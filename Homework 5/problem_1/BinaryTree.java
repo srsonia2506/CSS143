@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class BinaryTree {
     TreeNode root;
@@ -16,47 +13,97 @@ public class BinaryTree {
 
     public List<Integer> inorderIterative() {
         List<Integer> result = new ArrayList<>();
-        TreeNode curr = root;
+        if (root == null)
+            return result;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode leftMost = root;
+        while (!stack.isEmpty() || leftMost != null) {
+            while (leftMost != null) {
+                stack.push(leftMost);
+                leftMost = leftMost.left;
+            }
+            leftMost = stack.pop();
+            result.add(leftMost.val);
 
-        while (result.size() > 0 || curr != null)	{
-          if (curr != null){
-            result.add(curr);
-            curr = curr.left;
-          } else {
-            curr = curr.right;
-          }
+            leftMost = leftMost.right;
         }
         return result;
-        //return Arrays.asList(0); // place holder
     }
 
-
     public int LCA(int v1, int v2) {
-        Map<Node, Boolean> ancestors = new HashMap<Node, Boolean>(); 
-  
-        while (v1 != null){ 
-            ancestors.put(v1, Boolean.TRUE); 
-            v1 = v1.parent; 
-        } 
-  
-        while (v2 != null){ 
-            if (ancestors.containsKey(v2) != ancestors.isEmpty()) 
-                return v2; 
-            v2 = v2.parent; 
-        } 
-  
-        return null; 
+        return LCA(root, v1, v2).val;
+    }
+
+    private TreeNode LCA(TreeNode node, int v1, int v2) {
+        if (node == null)
+            return null;
+        
+        if (node.val == v1 || node.val == v2)
+            return node;
+        
+        TreeNode left = LCA(node.left, v1, v2);
+        TreeNode right = LCA(node.right, v1, v2);
+        
+        if (left != null && right != null)
+            return node;
+        
+        if (right == null)
+            return left;
+        else
+            return right;
     }
 
     public List<List<Integer>> levelOrderTraversal() {
-        // homework
-        // to be done iteratively
-        return null; // place holder
+        if (root == null)
+            return new ArrayList<>();
+
+        List<List<Integer>> levels = new ArrayList<>(); 
+        Deque<TreeNode> stack = new ArrayDeque<>(); 
+        stack.push(root);
+        
+        while (!stack.isEmpty()) {
+            Deque<TreeNode> nextStack = new ArrayDeque<>();
+            List<Integer> level = new ArrayList<>();
+            
+            while (!stack.isEmpty()) {
+                TreeNode node = stack.pop();
+                level.add(node.val);
+                
+                if (node.left != null)
+                    nextStack.add(node.left);
+
+                if (node.right != null)
+                    nextStack.add(node.right);
+            }
+            
+            levels.add(level);
+            stack = nextStack;
+        }
+
+        return levels;
     }
 
     public int nthSmallestInBST(int n) {
-        // homework
-        return -1;  // place holder
+        return nthSmallestInBST(root, n).val;
+    }
+
+    private TreeNode nthSmallestInBST(TreeNode node, int n){
+        if(node == null)
+            return null;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode leftMost = root;
+        while (!stack.isEmpty() || leftMost != null) {
+            while (leftMost != null) {
+                stack.push(leftMost);
+                leftMost = leftMost.left;
+            }
+            leftMost = stack.pop();
+            n -= 1;
+            if(n == 0)
+                return leftMost;
+            leftMost = leftMost.right;
+        }
+        return null;
     }
 
     private void preorderRecursive(TreeNode node, List<Integer> result) {
