@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MyMiniSearchEngine {
     // default solution. OK to change.
@@ -9,6 +7,11 @@ public class MyMiniSearchEngine {
 
     // disable default constructor
     private MyMiniSearchEngine() {
+        indexes = new HashMap<>();
+        List<Integer> innerList = new ArrayList<>();
+        List<List<Integer>> outerList = new ArrayList<>();
+        outerList.add(innerList);
+        indexes.put("key", outerList);
     }
 
     public MyMiniSearchEngine(List<String> documents) {
