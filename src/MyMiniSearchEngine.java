@@ -44,8 +44,8 @@ public class MyMiniSearchEngine {
     }
 
     private boolean checkConsecutive(List<List<Integer>> lists) {
-        List<Integer> first = lists.get(0);
-        for (int a : first) {
+        List<Integer> list = lists.get(0);
+        for (int a : list) {
             boolean consecutive = true;
             for (int j = 1; j < lists.size(); j++) {
                 a++;
