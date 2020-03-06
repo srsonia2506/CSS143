@@ -17,8 +17,7 @@ public class MyMiniSearchEngine {
             String[] words = text.split(texts.get(i));
 
             for (int j = 0; j < words.length; j++)
-                indexes.computeIfAbsent(words[j].toLowerCase(),
-                        key -> getLOfLWithSize(texts.size())).get(i).add(j);
+                indexes.computeIfAbsent(words[j].toLowerCase(), key -> getLOfLWithSize(texts.size())).get(i).add(j);
         }
     }
 
@@ -33,21 +32,14 @@ public class MyMiniSearchEngine {
         List<List<List<Integer>>> res = new ArrayList<>();
         Set<Integer> matchingDocuments = new TreeSet<>();
         String[] words = text.split(keyPhrase);
-
         for (String word : words) res.add(indexes.get(word.toLowerCase()));
-
         if(res.get(0) == null) return new ArrayList<>();
 
         for (int i = 0; i < res.get(0).size(); i++) {
             List<List<Integer>> resultByDocument = new ArrayList<>();
-
-            for (List<List<Integer>> result :res)
-                resultByDocument.add(result.get(i));
-
-            if(checkConsecutive(resultByDocument))
-                matchingDocuments.add(i);
+            for (List<List<Integer>> result :res) resultByDocument.add(result.get(i));
+            if(checkConsecutive(resultByDocument)) matchingDocuments.add(i);
         }
-
         return new ArrayList<>(matchingDocuments);
     }
 
@@ -57,11 +49,9 @@ public class MyMiniSearchEngine {
             boolean consecutive = true;
             for (int j = 1; j < lists.size(); j++) {
                 a++;
-                if (!lists.get(j).contains(a))
-                    consecutive = false;
+                if (!lists.get(j).contains(a)) consecutive = false;
             }
-            if (consecutive)
-                return true;
+            if (consecutive) return true;
         }
         return false;
     }
