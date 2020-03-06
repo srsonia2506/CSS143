@@ -1,34 +1,68 @@
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class MyMiniSearchEngine {
-    // default solution. OK to change.
-    // do not change the signature of index()
-    private Map<String, List<List<Integer>>> indexes;
+    private static Pattern text = Pattern.compile("[^\\p{Alnum}]");
+    private Map<String, List<List<Integer>>> indexes= new HashMap<>();
 
-    // disable default constructor
-    private MyMiniSearchEngine() {
-        indexes = new HashMap<>();
-        List<Integer> innerList = new ArrayList<>();
-        List<List<Integer>> outerList = new ArrayList<>();
-        outerList.add(innerList);
-        indexes.put("key", outerList);
-    }
+    private MyMiniSearchEngine() {}
 
     public MyMiniSearchEngine(List<String> documents) {
         index(documents);
     }
 
-    // each item in the List is considered a document.
-    // assume documents only contain alphabetical words separated by white spaces.
     private void index(List<String> texts) {
-        //homework
+
+        for (int i = 0; i < texts.size(); i++) {
+            String[] words = text.split(texts.get(i));
+
+            for (int j = 0; j < words.length; j++)
+                indexes.computeIfAbsent(words[j].toLowerCase(),
+                        key -> getLOfLWithSize(texts.size())).get(i).add(j);
+        }
     }
 
-    // search(key) return all the document ids where the given key phrase appears.
-    // key phrase can have one or two words in English alphabetic characters.
-    // return an empty list if search() finds no match in all documents.
+    private static List<List<Integer>> getLOfLWithSize(int size) {
+        List<List<Integer>> list = new ArrayList<>();
+        for (int i = 0; i < size; i++)
+            list.add(new ArrayList<>());
+        return list;
+    }
+
     public List<Integer> search(String keyPhrase) {
-        // homework
-        return new ArrayList<>(); // place holder
+        List<List<List<Integer>>> res = new ArrayList<>();
+        Set<Integer> matchingDocuments = new TreeSet<>();
+        String[] words = text.split(keyPhrase);
+
+        for (String word : words) res.add(indexes.get(word.toLowerCase()));
+
+        if(res.get(0) == null) return new ArrayList<>();
+
+        for (int i = 0; i < res.get(0).size(); i++) {
+            List<List<Integer>> resultByDocument = new ArrayList<>();
+
+            for (List<List<Integer>> result :res)
+                resultByDocument.add(result.get(i));
+
+            if(checkConsecutive(resultByDocument))
+                matchingDocuments.add(i);
+        }
+
+        return new ArrayList<>(matchingDocuments);
+    }
+
+    private boolean checkConsecutive(List<List<Integer>> lists) {
+        List<Integer> first = lists.get(0);
+        for (int a : first) {
+            boolean consecutive = true;
+            for (int j = 1; j < lists.size(); j++) {
+                a++;
+                if (!lists.get(j).contains(a))
+                    consecutive = false;
+            }
+            if (consecutive)
+                return true;
+        }
+        return false;
     }
 }
