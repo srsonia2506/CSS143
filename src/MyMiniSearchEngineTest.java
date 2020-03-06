@@ -20,11 +20,8 @@ public class MyMiniSearchEngineTest {
     public void testOneWord() {
         MyMiniSearchEngine engine = new MyMiniSearchEngine(documents());
         List<Integer> result = engine.search("seattle");
-
         assertEquals(2, result.size());
-
         assertEquals(List.of(4,6), result);
-
         result = engine.search("World");
         assertEquals(List.of(0,2,3,4,5,6), result);
     }
@@ -33,9 +30,7 @@ public class MyMiniSearchEngineTest {
     public void testTwoWord() {
         MyMiniSearchEngine engine = new MyMiniSearchEngine(documents());
         List<Integer> result = engine.search("hello world");
-
         assertEquals(2, result.size());
-
         assertEquals(List.of(0, 5), result);
     }
 
